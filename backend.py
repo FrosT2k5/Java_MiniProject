@@ -36,6 +36,7 @@ def inserttodb(name,items):
     values = (order_no,name,items)
     dbcursor.execute(query,values)
     db.commit()
+    return order_no
 
 def getallorders():
     query = "SELECT * FROM orders"
@@ -60,13 +61,13 @@ class orderdata(BaseModel):
     name: str
     items: str
 
-@app.get("/bookorder")
+@app.post("/bookorder")
 async def bookorder(data: orderdata):
     orderdict = data.dict()
     print(orderdict)
-    inserttodb(orderdict['name'],orderdict['items'])
+    orderno = inserttodb(orderdict['name'],orderdict['items'])
     printfulltable()
-    return {'status': 'success'}
+    return {"status": "success","orderno": orderno}
 
 @app.get("/getorders")
 async def getorders():

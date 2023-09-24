@@ -78,3 +78,6 @@ fabric.properties
 
 # Maven build files
 target/
+
+# Python cache
+__pycache__

@@ -10,6 +10,7 @@ public class MainFrame extends JFrame {
         this.setSize(500,550);
         this.setTitle("Fast-Food Restaurant App");
         this.setIconImage(new ImageIcon(getClass().getResource("/logo.png")).getImage());
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 

@@ -1,8 +1,9 @@
 from mysql import connector
 from os import environ
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+import orjson
 
 # SQL related vars & functions
 db = connector.connect(
@@ -54,7 +55,12 @@ def getallorders():
 
 
 # FastAPI backend handler
+class IndentedResponse(Response):
+    media_type = "application/json"
 
+    def render(self, content) -> bytes:
+        return orjson.dumps(content, option=orjson.OPT_INDENT_2)
+        
 app = FastAPI()
 
 class orderdata(BaseModel):
@@ -69,7 +75,7 @@ async def bookorder(data: orderdata):
     printfulltable()
     return {"status": "success","orderno": orderno}
 
-@app.get("/getorders")
+@app.get("/getorders",response_class=IndentedResponse)
 async def getorders():
     orderjson = getallorders()
     return orderjson

@@ -50,7 +50,6 @@ def getallorders():
         currentorder["name"] = i[1]
         currentorder["items"] = i[2]
         orderjson.append(currentorder)
-    print(orderjson)
     return orderjson
 
 
@@ -70,9 +69,7 @@ class orderdata(BaseModel):
 @app.post("/bookorder")
 async def bookorder(data: orderdata):
     orderdict = data.dict()
-    print(orderdict)
     orderno = inserttodb(orderdict['name'],orderdict['items'])
-    printfulltable()
     return {"status": "success","orderno": orderno}
 
 @app.get("/getorders",response_class=IndentedResponse)

@@ -24,5 +24,19 @@ then run the jar file (that has with-dependencies) in it's name in the target/ f
 java -jar filename.jar
 ```
 
+# Backend
+To run backend on your local machine, install requirements.txt using pip
+
+then, set up the following environment variables  `DB_NAME` , `DB_USER` , `DB_PASSWORD` , `DB_HOST` , `DB_PORT`
+After that, run:
+
+```
+uvicorn backend:app --host 127.0.0.1 --port 8000
+```
+The backend is currently hosted at:
+https://funger-1-w1673858.deta.app/
+
+Thanks to https://deta.space/ for awesome free fastapi hosting
+
 # Screenshot
 <img src="https://raw.githubusercontent.com/FrosT2k5/Java_MiniProject/master/gitassets/Screenshot.png" width="700px"> </img>

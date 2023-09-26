@@ -17,7 +17,7 @@ public class ShopCart implements ActionListener {
     private JButton submitOrderButton = new JButton("Submit");
     private JPanel cartPanel = new JPanel();
     private JLabel costLabel = new JLabel("Cost: ");
-    private final String cartUri = "http://127.0.0.1:8000/";
+    private final String cartUri = "https://funger-1-w1673858.deta.app/";
 
 
     public ShopCart(ShopItem[] items) {
@@ -92,12 +92,12 @@ public class ShopCart implements ActionListener {
                     .build();
             try {
                 response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                System.out.println("Response: "+response.body().toString());
                 responseJson = new JSONObject(response.body().toString());
                 orderNo = responseJson.get("orderno").toString();
-                System.out.println(orderNo);
             }
             catch (Exception e) {
-                System.out.println(e.getStackTrace());
+                e.printStackTrace();
             }
 
 

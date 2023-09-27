@@ -27,7 +27,8 @@ java -jar filename.jar
 # Backend
 To run backend on your local machine, install requirements.txt using pip
 
-then, set up the following environment variables  `DB_NAME` , `DB_USER` , `DB_PASSWORD` , `DB_HOST` , `DB_PORT`
+then, set up the following environment variables  `DB_NAME` , `DB_USER` , `DB_PASSWORD` , `DB_HOST` , `DB_PORT` (use mysql database)
+
 After that, run:
 
 ```

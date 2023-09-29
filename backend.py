@@ -4,6 +4,8 @@ from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import orjson
+import httpx
+import json
 
 # SQL related vars & functions
 db = connector.connect(
@@ -70,6 +72,22 @@ class orderdata(BaseModel):
 async def bookorder(data: orderdata):
     orderdict = data.dict()
     orderno = inserttodb(orderdict['name'],orderdict['items'])
+    itemlist = json.loads(orderdict['items'])
+    
+    telemessage = "New order received!\n"
+    telemessage += ("\nOrder No: " + str(orderno))
+    telemessage += ("\nName: " + orderdict['name'])
+    telemessage += "\n\nItems: "
+    for item in itemlist:
+        telemessage += ("\n" + item + ": " + str(itemlist[item]) )
+    async with httpx.AsyncClient() as client:
+        headers = {'Content-Type':'application/json'}
+        data = {
+            "username": environ.get("TELE_USERNAME"),
+            "securitykey": environ.get("TELE_SECURITYKEY"),
+            "message": telemessage
+        }
+        r = await client.post('https://pingme.domcloud.io/api/sendmessage',headers=headers,json=data)
     return {"status": "success","orderno": orderno}
 
 @app.get("/getorders",response_class=IndentedResponse)

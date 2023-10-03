@@ -80,14 +80,17 @@ async def bookorder(data: orderdata):
     telemessage += "\n\nItems: "
     for item in itemlist:
         telemessage += ("\n" + item + ": " + str(itemlist[item]) )
-    async with httpx.AsyncClient() as client:
-        headers = {'Content-Type':'application/json'}
-        data = {
-            "username": environ.get("TELE_USERNAME"),
-            "securitykey": environ.get("TELE_SECURITYKEY"),
-            "message": telemessage
-        }
-        r = await client.post('https://pingme.domcloud.io/api/sendmessage',headers=headers,json=data)
+    try:
+        async with httpx.AsyncClient() as client:
+            headers = {'Content-Type':'application/json'}
+            data = {
+                "username": environ.get("TELE_USERNAME"),
+                "securitykey": environ.get("TELE_SECURITYKEY"),
+                "message": telemessage
+            }
+            r = await client.post('https://pingme.domcloud.io/api/sendmessage',headers=headers,json=data)
+    except:
+        None
     return {"status": "success","orderno": orderno}
 
 @app.get("/getorders",response_class=IndentedResponse)

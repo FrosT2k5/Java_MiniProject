@@ -34,6 +34,10 @@ public class ShopItem extends JPanel implements ActionListener {
 
         plusButton.addActionListener(this);
         minusButton.addActionListener(this);
+        plusButton.setBackground(new Color(96, 158, 162));
+        minusButton.setBackground(new Color(96, 158, 162));
+        plusButton.setForeground(new Color(51,44,57));
+        minusButton.setForeground(new Color(51,44,57));
 
         txt.setText("0");
         txt.addActionListener(this);
@@ -45,6 +49,8 @@ public class ShopItem extends JPanel implements ActionListener {
         counterPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         namePanel.setBorder(new EmptyBorder(0,20,0,0));
         counterPanel.setBorder(new EmptyBorder(10,10,10,20));
+        namePanel.setBackground(new Color(213,222,217));
+        counterPanel.setBackground(new Color(213,222,217));
 
         namePanel.add(label);
         counterPanel.add(minusButton);

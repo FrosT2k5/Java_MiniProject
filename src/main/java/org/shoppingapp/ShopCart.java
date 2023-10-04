@@ -1,6 +1,7 @@
 package org.shoppingapp;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
@@ -27,6 +28,8 @@ public class ShopCart implements ActionListener {
         cartPanel.add(amountText);
         cartPanel.add(submitOrderButton);
         submitOrderButton.addActionListener(this);
+        submitOrderButton.setBackground(new Color(96, 158, 162));
+        submitOrderButton.setForeground(new Color(51,44,57));
         updateTotalCost();
     }
 
@@ -37,6 +40,7 @@ public class ShopCart implements ActionListener {
             currentItemAmount = item.getAmount();
             currentItemCost = item.getCost();
             totalCost += (currentItemAmount * currentItemCost);
+            cartPanel.setBackground(new Color(213,222,217));
         }
     }
 

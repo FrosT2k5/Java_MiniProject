@@ -19,6 +19,7 @@ public class ShopItem extends JPanel implements ActionListener {
     private JPanel namePanel = new JPanel();
     private JPanel counterPanel = new JPanel();
     private static ShopCart currentCart;
+
     public ShopItem(String itemName, String itemLogoPath, int itemCost) {
         // Set the private fields
         name = itemName;
@@ -30,13 +31,13 @@ public class ShopItem extends JPanel implements ActionListener {
         label.setIcon(logo);
         label.setHorizontalTextPosition(JLabel.RIGHT);
         label.setIconTextGap(10);
+
         plusButton.addActionListener(this);
         minusButton.addActionListener(this);
 
         txt.setText("0");
         txt.addActionListener(this);
         txt.setColumns(3);
-
         this.setPreferredSize(new Dimension(600, 50));
         this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 
@@ -85,7 +86,7 @@ public class ShopItem extends JPanel implements ActionListener {
             else {
                 amount -= 1;
             }
-            currentCart.updateAmount();
+            currentCart.updateTotalCost();
         }
 
         if (actionEvent.getSource() == plusButton) {
@@ -95,12 +96,12 @@ public class ShopItem extends JPanel implements ActionListener {
             else {
                 amount += 1;
             }
-            currentCart.updateAmount();
+            currentCart.updateTotalCost();
         }
 
         if (actionEvent.getSource() == txt) {
            amount = Integer.parseInt(txt.getText());
-           currentCart.updateAmount();
+           currentCart.updateTotalCost();
         }
 
         txt.setText(Integer.toString(amount));

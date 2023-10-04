@@ -13,7 +13,7 @@ import java.net.http.HttpResponse;
 public class ShopCart implements ActionListener {
     private ShopItem userItems[];
     private JTextArea amountText = new JTextArea(1,5);
-    private int totalAmount = 0;
+    private int totalCost = 0;
     private JButton submitOrderButton = new JButton("Submit");
     private JPanel cartPanel = new JPanel();
     private JLabel costLabel = new JLabel("Cost: ");
@@ -27,26 +27,26 @@ public class ShopCart implements ActionListener {
         cartPanel.add(amountText);
         cartPanel.add(submitOrderButton);
         submitOrderButton.addActionListener(this);
-        updateAmount();
+        updateTotalCost();
     }
 
-    private void calculateAmount() {
+    private void calculateTotalCost() {
         int currentItemAmount,currentItemCost;
-        totalAmount = 0;
+        totalCost = 0;
         for (ShopItem item : userItems) {
             currentItemAmount = item.getAmount();
             currentItemCost = item.getCost();
-            totalAmount += (currentItemAmount * currentItemCost);
+            totalCost += (currentItemAmount * currentItemCost);
         }
     }
 
-    public void updateAmount() {
-        calculateAmount();
-        amountText.setText(String.valueOf(totalAmount));
+    public void updateTotalCost() {
+        calculateTotalCost();
+        amountText.setText(String.valueOf(totalCost));
     }
 
-    public int getTotalAmount() {
-        return totalAmount;
+    public int getTotalCost() {
+        return totalCost;
     }
 
     public JPanel getCartPanel() {
@@ -69,7 +69,7 @@ public class ShopCart implements ActionListener {
             }
         }
 
-        orderList += "\nCost: "+totalAmount;
+        orderList += "\nCost: "+ totalCost;
         orderList += "\nEnter your name to book order";
 
         String name = JOptionPane.showInputDialog(orderList);

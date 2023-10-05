@@ -97,3 +97,7 @@ async def bookorder(data: orderdata):
 async def getorders():
     orderjson = getallorders()
     return orderjson
+
+@app.get("/health")
+async def healthcheck():
+    return {"status":"ok"}

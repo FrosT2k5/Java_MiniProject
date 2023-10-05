@@ -104,16 +104,47 @@ public class ShopCart implements ActionListener {
                 e.printStackTrace();
             }
 
-
             JOptionPane.showMessageDialog(null,"Order Booked Successfully. \nOrder No: "+orderNo);
         }
     }
 
+    private class BookOrderThread extends Thread {
+        public void run() {
+            bookOrder();
+        }
+    }
+
+    private static class HealthCheckThread extends Thread {
+        HttpRequest request;
+        final HttpClient client = HttpClient.newHttpClient();
+        final String[] healthCheckURIS = {
+                "https://pingme.domcloud.io/health",
+                "https://funger-1-w1673858.deta.app/health"
+                };
+
+        public void run() {
+            for ( String uri : healthCheckURIS ) {
+                request = HttpRequest.newBuilder(URI.create(uri))
+                        .version(HttpClient.Version.HTTP_1_1)
+                        .build();
+                try {
+                    HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                    System.out.println("Server Response: " + response.body().toString());
+                }
+                catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if (actionEvent.getSource() == submitOrderButton) {
-            bookOrder();
+            BookOrderThread book = new BookOrderThread();
+            HealthCheckThread healthCheck = new HealthCheckThread();
+            healthCheck.start();
+            book.start();
         }
     }
 }

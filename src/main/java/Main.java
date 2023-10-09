@@ -13,7 +13,7 @@ public class Main {
         items[3] = new ShopItem("Colddrink","colddrink.png",50);
         items[4] = new ShopItem("Fries","fries.png",120);
         items[5] = new ShopItem("Pizza","pizza.png",100);
-        items[6] = new ShopItem("Sandwitch","sandwitch.png",80);
+        items[6] = new ShopItem("Sandwich","sandwitch.png",80);
 
         for (ShopItem item : items) {
             frame.addItem(item);

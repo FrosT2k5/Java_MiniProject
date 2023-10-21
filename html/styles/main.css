@@ -94,3 +94,10 @@ body {
     font-size: 25px;
     margin: 50px 0 22px 0;
 }
+
+
+@media only screen and (max-width:768px) {
+    .orderListGrid {
+        grid-template-columns: 1fr;
+    }
+}

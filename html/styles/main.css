@@ -100,4 +100,8 @@ body {
     .orderListGrid {
         grid-template-columns: 1fr;
     }
+
+    .orderItemElement > * {
+        width: 31%;
+    }
 }

@@ -2,6 +2,7 @@ from mysql import connector
 from os import environ
 from fastapi import FastAPI, Response
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import orjson
 import httpx
@@ -48,9 +49,12 @@ def getallorders():
     orderjson = []
     for i in ans:
         currentorder = {}
+        itemdict = {}
         currentorder["number"] = i[0]
         currentorder["name"] = i[1]
-        currentorder["items"] = i[2]
+        itemdict = i[2]
+        itemdict = json.loads(itemdict)
+        currentorder["items"] = itemdict
         orderjson.append(currentorder)
     return orderjson
 
@@ -63,6 +67,13 @@ class IndentedResponse(Response):
         return orjson.dumps(content, option=orjson.OPT_INDENT_2)
         
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class orderdata(BaseModel):
     name: str

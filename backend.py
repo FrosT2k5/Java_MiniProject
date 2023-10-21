@@ -112,3 +112,6 @@ async def getorders():
 @app.get("/health")
 async def healthcheck():
     return {"status":"ok"}
+    
+app.mount("/", StaticFiles(directory="html/",html=True),name="homepage")
+

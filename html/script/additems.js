@@ -43,6 +43,7 @@ async function updateOrders() {
 
         let orderItemDiv = document.createElement("div")
         orderItemDiv.setAttribute("class","orderItem")
+        orderItemDiv.setAttribute("data-aos","zoom-in")
         orderItemDiv.style.backgroundColor = choose(orderItemListDivColors)
         let orderItemListDiv = document.createElement("div")
         orderItemListDiv.setAttribute("class","orderItemList")

@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <link rel="icon" type="image/x-icon" href="images/logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     </head>
 
     <body>
@@ -14,7 +15,7 @@
 
         <div class="orderListGrid" id="orderListGrid">
 
-            <div class="orderItem">
+            <div class="orderItem" data-aos="zoom-in">
                 <div class="orderItemList"> 
                     <div class="heading">
                         <h3>Order No: 0</h3>
@@ -111,6 +112,12 @@
         <div class="footer">
             <h2>Made with love. By Yash, Sairaj & Nandini</h2>
         </div>
+
         <script src="script/additems.js"></script>
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init({ once: true });
+        </script>
     </body>
 </html>

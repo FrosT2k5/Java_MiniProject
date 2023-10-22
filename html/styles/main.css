@@ -126,6 +126,10 @@ body {
     .orderListGrid {
         grid-template-columns: 1fr;
     }
+    
+    .footer {
+        font-size: 13px;
+    }
 
     .orderItemElement > * {
         width: 31%;

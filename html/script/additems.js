@@ -33,7 +33,7 @@ async function updateOrders() {
         "Coffee": 50        
     }
 
-    const orderItemListDivColors = ["#e2d9db","#facbea","#dcf7f3","#e1ecc4","#dof5be","#feff86"]
+    const orderItemListDivColors = ["#e2d9db","#facbea","#dcf7f3","#e1ecc4","#def5be","#feff86"]
 
     for (i=0 ; i<orderDict.length ; i++ ) {
 
@@ -108,4 +108,26 @@ async function updateOrders() {
     }
 }
 
-updateOrders()
+function doLogin(e) {
+    e.preventDefault();
+
+    let loginForm = document.forms["login"]
+    username = loginForm["username"].value
+    password = loginForm["password"].value
+
+    if (username != "admin" && password != "admin") {
+        alert("Invalid username or password")
+        return false
+    }
+
+    formDiv = document.getElementById("loginForm")
+    formDiv.style.display = "none"
+
+    gridDiv = document.querySelector(".orderListGrid")
+    gridDiv.style.display = "grid"
+
+    updateOrders()
+    return false
+}
+
+document.getElementById("submitButton").addEventListener("click",doLogin)

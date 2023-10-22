@@ -14,8 +14,34 @@ body {
     font-size: 60px;
 }
 
+#loginForm {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #def5be;
+    font-size: 20px;
+}
+
+#loginForm h4 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#loginForm input {
+    font-size: 20px;
+}
+
+#loginForm button {
+    margin-top: 25px;
+    background-color: #050a30;
+    border-radius: 5px;
+    width: 100px;
+    border-color: #ffc24a;
+    color: #ffc24a;
+    font-size: 20px;
+}
+
 .orderListGrid {
-    display: grid;
+    display: none;
     gap: 50px 50px;
     grid-template-columns: 1fr 1fr;
  

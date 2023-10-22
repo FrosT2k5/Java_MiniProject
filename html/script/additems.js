@@ -115,7 +115,7 @@ function doLogin(e) {
     username = loginForm["username"].value
     password = loginForm["password"].value
 
-    if (username != "admin" && password != "admin") {
+    if (username !== "admin" || password !== "admin") {
         alert("Invalid username or password")
         return false
     }

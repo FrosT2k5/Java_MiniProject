@@ -104,7 +104,7 @@ async function updateOrders() {
         orderItemDiv.appendChild(orderItemListDiv)
         orderItemDiv.appendChild(costElementDiv)
         mainDiv = document.getElementById("orderListGrid")
-        mainDiv.appendChild(orderItemDiv)
+        mainDiv.prepend(orderItemDiv)
     }
 }
 

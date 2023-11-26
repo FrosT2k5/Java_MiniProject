@@ -99,7 +99,7 @@ async def bookorder(data: orderdata):
                 "securitykey": environ.get("TELE_SECURITYKEY"),
                 "message": telemessage
             }
-            r = await client.post('https://pingme.domcloud.io/api/sendmessage',headers=headers,json=data)
+            r = await client.post('https://pingme.droidtech.it/api/sendmessage',headers=headers,json=data)
     except:
         None
     return {"status": "success","orderno": orderno}
